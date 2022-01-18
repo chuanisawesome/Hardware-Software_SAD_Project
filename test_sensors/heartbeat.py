@@ -6,13 +6,20 @@
 # License: Public Domain
 
 import time
+import board
+import busio
+i2c = busio.I2C(board.SCL, board.SDA)
 # Import the ADS1x15 module.
-import Adafruit_ADS1x15
+#import Adafruit_ADS1x15
+import adafruit_ads1x15.ads1115 as ADS
 
 
 if __name__ == '__main__':
 
-    adc = Adafruit_ADS1x15.ADS1015()
+    #adc = Adafruit_ADS1x15.ADS1015()
+    # Create an ADS1115 ADC (16-bit) instance.
+    adc = ADS.ADS1115(i2c)
+    #adc = ADS.ADS1115(i2c)
     # initialization 
     GAIN = 2/3  
     curState = 0
@@ -34,7 +41,7 @@ if __name__ == '__main__':
     # Main loop. use Ctrl-c to stop the code
     while True:
         # read from the ADC
-        Signal = adc.read_adc(0, gain=GAIN)   #TODO: Select the correct ADC channel. I have selected A0 here
+        Signal = adc.read(0)   #TODO: Select the correct ADC channel. I have selected A0 here
         curTime = int(time.time()*1000)
 
         sampleCounter += curTime - lastTime;      #                   # keep track of the time in mS with this variable
