@@ -81,7 +81,7 @@ if __name__ == '__main__':
               runningTotal += rate[9];                # add the latest IBI to runningTotal
               runningTotal /= 10;                     # average the last 10 IBI values 
               BPM = 60000/runningTotal;               # how many beats can fit into a minute? that's BPM!
-              print 'BPM: {}'.format(BPM)
+              print ('BPM: {}'.format(BPM))
 
         if Signal < thresh and Pulse == True :   # when the values are going down, the beat is over
             Pulse = False;                         # reset the Pulse flag so we can do it again
@@ -97,6 +97,6 @@ if __name__ == '__main__':
             lastBeatTime = sampleCounter;          # bring the lastBeatTime up to date        
             firstBeat = True;                      # set these to avoid noise
             secondBeat = False;                    # when we get the heartbeat back
-            print "no beats found"
+            print ("no beats found")
 
         time.sleep(0.005)
