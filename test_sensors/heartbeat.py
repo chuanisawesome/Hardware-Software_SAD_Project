@@ -2,9 +2,8 @@
 # The code borrows heavily from Tony DiCola's examples of using ADS1x15 with 
 # Raspberry pi and WorldFamousElectronics's code for PulseSensor_Amped_Arduino
 
-# Author: Udayan Kumar
-# License: Public Domain
 
+import numpy as np
 import time
 import board
 import busio
@@ -37,6 +36,8 @@ if __name__ == '__main__':
     amp = 100
 
     lastTime = int(time.time()*1000)
+
+    file_name = 'heartbeat.txt'
 
     # Main loop. use Ctrl-c to stop the code
     while True:
@@ -107,3 +108,8 @@ if __name__ == '__main__':
             print ("no beats found")
 
         time.sleep(0.005)
+        
+        data_array = np.array(Signal)
+        print('Record ended, data shape: ' + str(data_array.shape))
+        print('Data saved at:' + file_name)
+        np.savetxt(file_name, data_array)
