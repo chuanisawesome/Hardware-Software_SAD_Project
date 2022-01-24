@@ -1,10 +1,12 @@
-const int GSR = A0;
-int sensorValue = 0;
+const int GSR=A0;
+int sensorValue=0;
 int gsr_average = 0;
+// PrintWriter output;
 
 void setup() {
 
   Serial.begin(9600);
+//  output = createWriter("testdata.txt");
 
 }
 
@@ -21,7 +23,7 @@ void loop() {
   Serial.print("gsr_average = ");
   Serial.println(gsr_average);
   int human_resistance = ((1024 + 2 * gsr_average) * 10000) / (516 - gsr_average); // following datasheet
-  Serial.print("human_resistance =");
+  Serial.print("human_resistance = ");
   Serial.println(human_resistance);
   delay(2000);
 }
