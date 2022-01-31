@@ -42,8 +42,8 @@ if __name__ == '__main__':
     # Main loop. use Ctrl-c to stop the code
     while True:
       # read from the ADC
-      Signal = adc.read(0)   #TODO: Select the correct ADC channel. I have selected A0 here
-      print(Signal)
+      Signal = adc.read(1)   #TODO: Select the correct ADC channel. I have selected A0 here
+      # print(Signal)
       curTime = int(time.time()*1000)
 
       sampleCounter += curTime - lastTime;      #                   # keep track of the time in mS with this variable
